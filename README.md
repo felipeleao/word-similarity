@@ -31,9 +31,9 @@ Uma vez gerado o JAR, basta executá-lo por linha de comando para que o serviço
     ```    
     Para instalar em ambientes Windows ou caso haja problemas em ambientes UNIX, consulte a [documentação oficial](https://maven.apache.org/install.html).
 
-- Realizar o build da aplicação
-- Inicializar o serviço RESTful
-- Acessar o serviço via HTTP
+2. Realizar o build da aplicação
+3. Inicializar o serviço RESTful
+4. Acessar o serviço via HTTP
 
 **Observação:** Antes de inicializar o serviço verifique se a porta 8080 está livre, ou seja, que não há outros serviços como o Apache (_httpd_) utilizando-a, e que o acesso à porta não está sendo bloqueado por um firewall nativo do sistema operacional.
 
