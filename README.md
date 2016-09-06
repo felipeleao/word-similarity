@@ -12,30 +12,49 @@ O serviço foi criado com o auxílio do [framework Spring](https://spring.io/) e
 
 ## Instruções de compilação e uso
 
-A compilação pode ser realizada com auxílio da ferramenta Maven (versão 3.3.9+) ou com a IDE Eclipse, através da funcionalidade de `Export > Runnable JAR File` (Escolher a classe `Runner.java` para inicializar a aplicação).
+A compilação deve ser realizada com auxílio da ferramenta Maven (versão 3.3.9+). Uma vez empacotada a aplicação não dependerá de um servidor de aplicação ou container web para que possa ser executada. Quando executada por linha de comando a aplicação levantará o serviço RESTful na porta 8080.
 
-Uma vez gerado o JAR, basta executá-lo por linha de comando para que o serviço seja leventado e possa ser acessado via requisições HTTP.
+__Atenção__: É possível alterar a porta do serviço editando o arquivo de propriedades em `src/main/resources/application.properties`.
 
 ### Instruções de compilação e uso (Maven)
 
 1. Instalar maven.
     ```bash
-    # Macintosh (homebew)
-    $ brew install maven
+  # Macintosh (homebew)
+ $ brew install maven
 
-  # Debian based SO (e.g. Ubuntu)
-    $ sudo apt-get install maven
+ # Debian based SO (e.g. Ubuntu)
+ $ sudo apt-get install maven
 
  # RHEL based SO (e.g. CentOS, Red Hat, Fedora)
-    $ yum install maven
-    ```    
+ $ yum install maven
+ ```    
     Para instalar em ambientes Windows ou caso haja problemas em ambientes UNIX, consulte a [documentação oficial](https://maven.apache.org/install.html).
 
-2. Realizar o build da aplicação
+2. Compilar e empacotar a aplicação (_Build_)
+    ```bash
+ # Compilar o código gerando um JAR executável
+ $ mvn clean package
+ ```
+    O arquivo JAR gerado poderá se encontrado dentro do siretório `target/`
+
 3. Inicializar o serviço RESTful
+    ```bash
+ # Levantar o serviço
+ $ java -jar target/word-similarity-0.0.1-SNAPSHOT.jar
+ ```
 4. Acessar o serviço via HTTP
 
-**Observação:** Antes de inicializar o serviço verifique se a porta 8080 está livre, ou seja, que não há outros serviços como o Apache (_httpd_) utilizando-a, e que o acesso à porta não está sendo bloqueado por um firewall nativo do sistema operacional.
+    O serviço deve ser acessado através de requisições HTTP que podem ser realizadas via navegador ou pelo comando `curl`. Abaixo seguem alguns exemplos de utilização das funcionalidades disponibilizadas junto aos retornos esperados:
+
+    > Enviando uma palavra para armazenar internamente no serviço
+    ```bash
+ # Adicionando a palavra "abacate"
+ curl http://loclahost:8080/rest/add/abacate
+ ```
+
+
+**Observação:** Antes de inicializar o serviço verifique se a porta escolhida para disponibilizá-lo (8080 por padrão) está livre, ou seja, que não há outros serviços como o Apache (_httpd_) utilizando-a, e que o acesso à porta não está sendo bloqueado por um firewall nativo do sistema operacional.
 
 
 ## Autoria
