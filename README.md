@@ -49,9 +49,23 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
 
     > Enviando uma palavra para armazenar internamente no serviço
     ```bash
- # Adicionando a palavra "abacate"
- curl http://loclahost:8080/rest/add/abacate
+ # Adicionando a palavra "manhã"
+ curl http://loclahost:8080/rest/add/manhã
+ >> true
+ # Adicionando a palavra "tarde"
+ curl http://loclahost:8080/rest/add/tarde
+ >> true
+ # Adicionando a palavra "noite"
+ curl http://loclahost:8080/rest/add/noite
+ >> true
  ```
+
+    > Recuperando a lista com todas as palavras armazenadas
+    ```bash
+# Recuperando tudo
+curl http://loclahost:8080/rest/listAll
+>> ["tarde","manhã","noite"]
+```
 
 
 **Observação:** Antes de inicializar o serviço verifique se a porta escolhida para disponibilizá-lo (8080 por padrão) está livre, ou seja, que não há outros serviços como o Apache (_httpd_) utilizando-a, e que o acesso à porta não está sendo bloqueado por um firewall nativo do sistema operacional.
