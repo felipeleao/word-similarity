@@ -3,6 +3,7 @@ package br.com.fleao.word_similarity.services;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class WordService {
 	
 	// Estrutura de dados para armazenar as palavras em tempo de execução. Por ser um "Set", não há duplicação.
 	private final Set<String> bagOfWords = new HashSet<String>();
-	private ReadWriteLock lock;
+	private final ReadWriteLock lock = new ReentrantReadWriteLock();
 	
 	/**
 	 * Retorna o conjunto com todas as palavras recebidas e armazenadas pela aplicação desde sua inicialização.

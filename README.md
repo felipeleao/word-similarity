@@ -50,20 +50,20 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
     > Enviando uma palavra para armazenar internamente no serviço
     ```bash
  # Adicionando a palavra "manhã"
- curl http://loclahost:8080/rest/add/manhã
+ curl http://localhost:8080/rest/add/manhã
  >> true
  # Adicionando a palavra "tarde"
- curl http://loclahost:8080/rest/add/tarde
+ curl http://localhost:8080/rest/add/tarde
  >> true
  # Adicionando a palavra "noite"
- curl http://loclahost:8080/rest/add/noite
+ curl http://localhost:8080/rest/add/noite
  >> true
  ```
 
     > Recuperando a lista com todas as palavras armazenadas
     ```bash
 # Recuperando tudo
-curl http://loclahost:8080/rest/listAll
+curl http://localhost:8080/rest/listAll
 >> ["tarde","manhã","noite"]
 ```
 
