@@ -50,23 +50,39 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
     > Enviando uma palavra para armazenar internamente no serviço
     ```bash
  # Adicionando a palavra "manhã"
- curl http://localhost:8080/rest/add/manhã
+ $ curl http://localhost:8080/rest/add/manhã
  >> true
+ ```
+ ```bash
  # Adicionando a palavra "tarde"
- curl http://localhost:8080/rest/add/tarde
+ $ curl http://localhost:8080/rest/add/tarde
  >> true
+ ```
+ ```bash
  # Adicionando a palavra "noite"
- curl http://localhost:8080/rest/add/noite
+ $ curl http://localhost:8080/rest/add/noite
  >> true
  ```
 
     > Recuperando a lista com todas as palavras armazenadas
     ```bash
-# Recuperando tudo
-curl http://localhost:8080/rest/listAll
->> ["tarde","manhã","noite"]
-```
+  # Recuperando tudo
+  >> ["tarde","manhã","noite"]
+  ```
 
+    > Recuperando a lista de palavras similares a uma dada keyword
+    ```bash
+   # Recuperando palavras similares a "banana"
+   # (usando threshold default)
+  curl http://localhost:8080/rest/listSimilar/banana
+  >> ["abacate","manhã","noite"]
+  ```
+  ```bash
+  # Recuperando palavras similares a "banana"
+  # (especificando um threshold)
+  curl http://localhost:8080/rest/listSimilar/banana?threshhold=2
+  >> ["abacate","manhã","noite"]
+  ```
 
 **Observação:** Antes de inicializar o serviço verifique se a porta escolhida para disponibilizá-lo (8080 por padrão) está livre, ou seja, que não há outros serviços como o Apache (_httpd_) utilizando-a, e que o acesso à porta não está sendo bloqueado por um firewall nativo do sistema operacional.
 
