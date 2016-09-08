@@ -7,13 +7,18 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.springframework.stereotype.Service;
 
+import br.com.fleao.word_similarity.util.LevenshteinDistanceAlgorithm;
+
 /**
+ * <p>
  * Serviço spring para realizar as ações relacionadas ao armazenamento e recuperação de palavras armazenadas. Entre
  * as funções disponíveis se encontra a de invocação.
- * 
+ * </p>
+ * <p>
  * Nesta versão da aplicação, por não haver a necessidade de persistência das palavras recebidas pela aplicação, todas 
  * as palavras adicionadas via invocação do serviço REST são armazenadas em memória e disponíveis apenas em tempo de 
  * execução.
+ * </p>
  * 
  * @author felipe
  *
@@ -46,11 +51,47 @@ public class WordService {
 	 * @param word palavra a ser armazenada
 	 */
 	public void storeWord(String word){
-		lock.writeLock().lock();
-		try{
-			bagOfWords.add(word);
-		}finally{
-			lock.writeLock().unlock();
+		if(word != null){
+			lock.writeLock().lock();
+			try{
+				bagOfWords.add(word);
+			}finally{
+				lock.writeLock().unlock();
+			}
+		}else{
+			
 		}
 	}
+
+	/**
+	 * Retorna um conjunto de palavras cuja distância de similaridade de acordo com o algoritmo de Distância de 
+	 * Levenshtein é igual ou inferior ao threshold informado. O conjunto de palavras retornado é um subconjunto 
+	 * das palavras atualmente armazenadas pela aplicação. Quanto menor o valor calculado da distância, mais 
+	 * similares são duas palavras.
+	 * 
+	 * @param keyword palavra cujos similares deseja-se encontrar.
+	 * @param threshold distância máxima para considerar duas palavras como similares
+	 * @return conjunto de palavras com distância para a keyword igual ou inferior ao threshold
+	 * @throws IllegalArgumentException caso algum dos parâmetros informados seja inválido
+	 */
+	public Set<String> listLevenshteinSimilarWords(String keyword, int threshold) throws IllegalArgumentException{
+		// Validação dos parâmetros
+		if(threshold < 0){
+			throw new IllegalArgumentException("O threshold informado deve ser positivo.");
+		}else if(keyword == null){
+			throw new IllegalArgumentException("A keyword informada é inválida.");
+		}
+		
+		// Cálculo das palavras similares compatíveis com o threshold
+		Set<String> similarWords = new HashSet<String>();
+		for(String storedWord : getAllStoredWords()){
+			if(LevenshteinDistanceAlgorithm.calculate(keyword, storedWord) <= threshold){
+				similarWords.add(storedWord);
+			}
+		}
+
+		return similarWords;
+	}
+	
+	
 }
