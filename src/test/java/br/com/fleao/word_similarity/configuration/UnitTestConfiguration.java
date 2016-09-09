@@ -1,4 +1,4 @@
-package br.com.fleao.configuration;
+package br.com.fleao.word_similarity.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

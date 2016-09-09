@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import br.com.fleao.configuration.UnitTestConfiguration;
+import br.com.fleao.word_similarity.configuration.UnitTestConfiguration;
 
 /**
  * Testes unitários para verificar o correto funcionamento dos métodos da classe {@link WordService}
