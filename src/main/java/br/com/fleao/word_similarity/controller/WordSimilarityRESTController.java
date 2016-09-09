@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fleao.word_similarity.services.WordService;
 
 /**
+ * <p>
  * Classe responsável por expor os serviços REST da aplicação. 
- * 
+ * </p>
+ * <p>
  * Os serviços disponibilizados possibilitam o armazenamento de novas palavras, a recuperação das
  * palavras armazenadas e a recuperação de uma lista de palavras similares à uma keyword informada.
+ * </p>
  * 
  * @author felipe
  *

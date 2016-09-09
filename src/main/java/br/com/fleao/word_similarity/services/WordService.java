@@ -51,15 +51,14 @@ public class WordService {
 	 * @param word palavra a ser armazenada
 	 */
 	public void storeWord(String word){
-		if(word != null){
-			lock.writeLock().lock();
-			try{
-				bagOfWords.add(word);
-			}finally{
-				lock.writeLock().unlock();
-			}
-		}else{
-			
+		if(word == null)
+			throw new IllegalArgumentException("O parâmetro informado não pode ser nulo.");
+		
+		lock.writeLock().lock();
+		try{
+			bagOfWords.add(word);
+		}finally{
+			lock.writeLock().unlock();
 		}
 	}
 
@@ -85,7 +84,7 @@ public class WordService {
 		// Cálculo das palavras similares compatíveis com o threshold
 		Set<String> similarWords = new HashSet<String>();
 		for(String storedWord : getAllStoredWords()){
-			if(LevenshteinDistanceAlgorithm.calculate(keyword, storedWord) <= threshold){
+			if(LevenshteinDistanceAlgorithm.getDistanceEfficiently(keyword, storedWord) <= threshold){
 				similarWords.add(storedWord);
 			}
 		}
