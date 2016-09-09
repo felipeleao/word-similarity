@@ -10,13 +10,13 @@ O serviço foi criado com o auxílio do [framework Spring](https://spring.io/) e
 - Recuperar a lista de palavras armazenadas.
 - Recuperar uma lista de palavras similares à uma palavra informada como _keyword_.
 
-## Instruções de compilação e uso
+## Instruções
 
 A compilação deve ser realizada com auxílio da ferramenta Maven (versão 3.3.9+). Uma vez empacotada a aplicação não dependerá de um servidor de aplicação ou container web para que possa ser executada. Quando executada por linha de comando a aplicação levantará o serviço RESTful na porta 8080.
 
 __Atenção__: É possível alterar a porta do serviço editando o arquivo de propriedades em `src/main/resources/application.properties`.
 
-### Instruções de compilação e uso (Maven)
+### Compilação e uso (Maven)
 
 1. Instalar maven.
     ```bash
@@ -37,6 +37,8 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
  $ mvn clean package
  ```
     O arquivo JAR gerado poderá se encontrado dentro do siretório `target/`
+
+    __Observação:__ Ao empacotar a aplicação os testes unitários serão executados automaticamente. Caso necessário é possível empacotar sem executar os testes, adicionando a flag `-Dmaven.test.skip=true`
 
 3. Inicializar o serviço RESTful
     ```bash
@@ -63,29 +65,33 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
  $ curl http://localhost:8080/rest/add/noite
  >> true
  ```
+ ```bash
+ # Adicionando a palavra "abacate"
+ $ curl http://localhost:8080/rest/add/abacate
+ >> true
+ ```
 
     > Recuperando a lista com todas as palavras armazenadas
     ```bash
   # Recuperando tudo
-  >> ["tarde","manhã","noite"]
+  >> ["abacate","tarde","manhã","noite"]
   ```
 
     > Recuperando a lista de palavras similares a uma dada keyword
     ```bash
-   # Recuperando palavras similares a "banana"
+   # Recuperando palavras similares a "amanhã"
    # (usando threshold default)
-  curl http://localhost:8080/rest/listSimilar/banana
-  >> ["abacate","manhã","noite"]
+  curl http://localhost:8080/rest/listSimilar/boate
+  >> ["abacate","noite"]
   ```
   ```bash
   # Recuperando palavras similares a "banana"
   # (especificando um threshold)
-  curl http://localhost:8080/rest/listSimilar/banana?threshhold=2
-  >> ["abacate","manhã","noite"]
+  curl http://localhost:8080/rest/listSimilar/banana?threshhold=4
+  >> ["abacate","manhã"]
   ```
 
 **Observação:** Antes de inicializar o serviço verifique se a porta escolhida para disponibilizá-lo (8080 por padrão) está livre, ou seja, que não há outros serviços como o Apache (_httpd_) utilizando-a, e que o acesso à porta não está sendo bloqueado por um firewall nativo do sistema operacional.
-
 
 ## Autoria
 
