@@ -55,32 +55,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<skipTests>false</skipTests>
-					<excludes>
-						<exclude>**/*IT.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>integration-test</id>
-						<goals>
-							<goal>integration-test</goal>
-						</goals>
-						<configuration>
-							<skipTests>${integration-tests.skip}</skipTests>
-							<includes>
-								<include>**/*IT.class</include>
-							</includes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin> -->
 		</plugins>
 	</build>
 

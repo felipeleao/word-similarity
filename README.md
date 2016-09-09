@@ -12,7 +12,7 @@ O serviço foi criado com o auxílio do [framework Spring](https://spring.io/) e
 
 ## Instruções
 
-A compilação deve ser realizada com auxílio da ferramenta Maven (versão 3.3.9+). Uma vez empacotada a aplicação não dependerá de um servidor de aplicação ou container web para que possa ser executada. Quando executada por linha de comando a aplicação levantará o serviço RESTful na porta 8080.
+A compilação deve ser realizada com auxílio da ferramenta Maven (versão 3.3.9+) e Java 8. Uma vez empacotada a aplicação não dependerá de um servidor de aplicação ou container web para que possa ser executada. Quando executada por linha de comando a aplicação levantará o serviço RESTful na porta 8080.
 
 __Atenção__: É possível alterar a porta do serviço editando o arquivo de propriedades em `src/main/resources/application.properties`.
 
@@ -36,7 +36,7 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
  # Compilar o código gerando um JAR executável
  $ mvn clean package
  ```
-    O arquivo JAR gerado poderá se encontrado dentro do siretório `target/`
+    O arquivo JAR gerado poderá se encontrado dentro do diretório `target/`
 
     __Observação:__ Ao empacotar a aplicação os testes unitários serão executados automaticamente. Caso necessário é possível empacotar sem executar os testes, adicionando a flag `-Dmaven.test.skip=true`
 
@@ -80,7 +80,7 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
 
     > Recuperando a lista de palavras similares a uma dada keyword
     ```bash
-   # Recuperando palavras similares a "amanhã"
+   # Recuperando palavras similares a "boate"
    # (usando threshold default)
   curl http://localhost:8080/rest/listSimilar/boate
   >> ["abacate","noite"]
