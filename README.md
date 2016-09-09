@@ -45,6 +45,7 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
  # Levantar o serviço
  $ java -jar target/word-similarity-0.0.1-SNAPSHOT.jar
  ```
+    A última linha de log informará que o serviço está ativo. O terminal ficará preso enquanto o serviço estiver em execução. Para encerrar o serviço, basta dar o comando `Ctrl + C`.
 4. Acessar o serviço via HTTP
 
     O serviço deve ser acessado através de requisições HTTP que podem ser realizadas via navegador ou pelo comando `curl`. Abaixo seguem alguns exemplos de utilização das funcionalidades disponibilizadas junto aos retornos esperados:

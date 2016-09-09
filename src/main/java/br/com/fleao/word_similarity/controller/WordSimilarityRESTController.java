@@ -73,7 +73,7 @@ public class WordSimilarityRESTController {
 			@RequestParam(value="threshold", defaultValue="3") int threshold
 		){
 		
-		return wordService.listLevenshteinSimilarWords(keyword, threshold);
+		return wordService.listSimilarStoredWords(keyword, threshold);
 		
 	}
 	

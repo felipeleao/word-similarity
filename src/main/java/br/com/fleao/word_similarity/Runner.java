@@ -1,5 +1,7 @@
 package br.com.fleao.word_similarity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,14 +16,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Runner {
-	
+	private static final Logger logger = LoggerFactory.getLogger(Runner.class);
 	/**
 	 * Método utilizado para inicializar a aplicação quando o JAR é invocado.
 	 * 
 	 * @param args
 	 */
     public static void main( String[] args ){
-    	SpringApplication.run(Runner.class, args);
-    	System.out.println("Inicializado");
+    	try {
+			logger.info("Inicializando aplicação...");
+			SpringApplication.run(Runner.class, args);
+			logger.info("Aplicação inicializada com sucesso. Serviços ativos.");
+		} catch (Exception e) {
+			logger.error("Erro fatal na execução. A aplicação será encerrada.", e);
+		}
     }
 }

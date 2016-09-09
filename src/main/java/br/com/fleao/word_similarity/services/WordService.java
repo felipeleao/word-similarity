@@ -73,7 +73,7 @@ public class WordService {
 	 * @return conjunto de palavras com distância para a keyword igual ou inferior ao threshold
 	 * @throws IllegalArgumentException caso algum dos parâmetros informados seja inválido
 	 */
-	public Set<String> listLevenshteinSimilarWords(String keyword, int threshold) throws IllegalArgumentException{
+	public Set<String> listSimilarStoredWords(String keyword, int threshold) throws IllegalArgumentException{
 		// Validação dos parâmetros
 		if(threshold < 0){
 			throw new IllegalArgumentException("O threshold informado deve ser positivo.");
