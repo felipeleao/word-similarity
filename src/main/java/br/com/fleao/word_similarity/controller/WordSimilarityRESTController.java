@@ -6,15 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fleao.word_similarity.services.WordService;
 
 /**
+ * <p>
  * Classe responsável por expor os serviços REST da aplicação. 
- * 
+ * </p>
+ * <p>
  * Os serviços disponibilizados possibilitam o armazenamento de novas palavras, a recuperação das
  * palavras armazenadas e a recuperação de uma lista de palavras similares à uma keyword informada.
+ * </p>
  * 
  * @author felipe
  *
@@ -42,6 +46,7 @@ public class WordSimilarityRESTController {
 		}
 	}
 	
+	
 	/**
 	 * Recupera uma lista com todas as palavras atualmente armazenadas pela aplicação.
 	 * 
@@ -51,5 +56,27 @@ public class WordSimilarityRESTController {
     public Set<String> listAllWords(){
 		return wordService.getAllStoredWords();
 	}
+	
+	
+	/**
+	 * Recupera uma lista de palavras armazenadas pela aplicação que são similares à keyword informada. 
+	 * O nível de similaridade aceito é determinado pelo parâmetro "threshold" (opcional). Caso nenhum 
+	 * threshold seja informado, será utilizado o valor default (3).
+	 * 
+	 * @param keyword
+	 * @param threshold
+	 * @return
+	 */
+	@RequestMapping(value="/listSimilar/{keyword}", method={RequestMethod.GET, RequestMethod.POST})
+	public Set<String> listSimilarWords(
+			@PathVariable(value="keyword") String keyword, 
+			@RequestParam(value="threshold", defaultValue="3") int threshold
+		){
+		
+		return wordService.listLevenshteinSimilarWords(keyword, threshold);
+		
+	}
+	
+	
 	
 }
