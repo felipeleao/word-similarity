@@ -87,6 +87,9 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
   ```
   ```bash
   # Recuperando palavras similares a "banana"
+  # (sem especificar o threshold)
+  curl http://localhost:8080/rest/listSimilar/banana
+  >> []
   # (especificando um threshold)
   curl http://localhost:8080/rest/listSimilar/banana?threshhold=4
   >> ["abacate","manhã"]
