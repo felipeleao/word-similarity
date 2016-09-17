@@ -75,6 +75,7 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
     > Recuperando a lista com todas as palavras armazenadas
     ```bash
   # Recuperando tudo
+  curl http://localhost:8080/rest/listAll
   >> ["abacate","tarde","manhã","noite"]
   ```
 
