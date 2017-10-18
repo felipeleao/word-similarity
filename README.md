@@ -19,32 +19,32 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
 ### Compilação e uso (Maven)
 
 1. Instalar maven.
-    ```bash
-  # Macintosh (homebew)
- $ brew install maven
-
- # Debian based SO (e.g. Ubuntu)
- $ sudo apt-get install maven
-
- # RHEL based SO (e.g. CentOS, Red Hat, Fedora)
- $ yum install maven
- ```    
+   ```bash 
+   # Macintosh (homebew)
+   $ brew install maven
+   
+   # Debian based SO (e.g. Ubuntu)
+   $ sudo apt-get install maven
+   
+   # RHEL based SO (e.g. CentOS, Red Hat, Fedora)
+   $ yum install maven
+   ```    
     Para instalar em ambientes Windows ou caso haja problemas em ambientes UNIX, consulte a [documentação oficial](https://maven.apache.org/install.html).
 
 2. Compilar e empacotar a aplicação (_Build_)
-    ```bash
- # Compilar o código gerando um JAR executável
- $ mvn clean package
- ```
-    O arquivo JAR gerado poderá se encontrado dentro do diretório `target/`
+   ```bash
+   # Compilar o código gerando um JAR executável
+   $ mvn clean package
+   ```
+   O arquivo JAR gerado poderá se encontrado dentro do diretório `target/`
 
     __Observação:__ Ao empacotar a aplicação os testes unitários serão executados automaticamente. Caso necessário é possível empacotar sem executar os testes, adicionando a flag `-Dmaven.test.skip=true`
 
-3. Inicializar o serviço RESTful
+3. Levantar o serviço RESTful
     ```bash
- # Levantar o serviço
- $ java -jar target/word-similarity-0.0.1-SNAPSHOT.jar
- ```
+    # Levantar o serviço
+    $ java -jar target/word-similarity-0.0.1-SNAPSHOT.jar
+    ```
     A última linha de log informará que o serviço está ativo. O terminal ficará preso enquanto o serviço estiver em execução. Para encerrar o serviço, basta dar o comando `Ctrl + C`.
 4. Acessar o serviço via HTTP
 
@@ -52,49 +52,49 @@ __Atenção__: É possível alterar a porta do serviço editando o arquivo de pr
 
     > Enviando uma palavra para armazenar internamente no serviço
     ```bash
- # Adicionando a palavra "manhã"
- $ curl http://localhost:8080/rest/add/manhã
- >> true
- ```
- ```bash
- # Adicionando a palavra "tarde"
- $ curl http://localhost:8080/rest/add/tarde
- >> true
- ```
- ```bash
- # Adicionando a palavra "noite"
- $ curl http://localhost:8080/rest/add/noite
- >> true
- ```
- ```bash
- # Adicionando a palavra "abacate"
- $ curl http://localhost:8080/rest/add/abacate
- >> true
- ```
+    # Adicionando a palavra "manhã"
+    $ curl http://localhost:8080/rest/add/manhã
+    >> true
+    ```
+    ```bash
+    # Adicionando a palavra "tarde"
+    $ curl http://localhost:8080/rest/add/tarde
+    >> true
+    ```
+    ```bash
+    # Adicionando a palavra "noite"
+    $ curl http://localhost:8080/rest/add/noite
+    >> true
+    ```
+    ```bash
+    # Adicionando a palavra "abacate"
+    $ curl http://localhost:8080/rest/add/abacate
+    >> true
+    ```
 
     > Recuperando a lista com todas as palavras armazenadas
     ```bash
-  # Recuperando tudo
-  curl http://localhost:8080/rest/listAll
-  >> ["abacate","tarde","manhã","noite"]
-  ```
+    # Recuperando tudo
+    curl http://localhost:8080/rest/listAll
+    >> ["abacate","tarde","manhã","noite"]
+    ```
 
     > Recuperando a lista de palavras similares a uma dada keyword
     ```bash
-   # Recuperando palavras similares a "boate"
-   # (usando threshold default)
-  curl http://localhost:8080/rest/listSimilar/boate
-  >> ["abacate","noite"]
-  ```
-  ```bash
-  # Recuperando palavras similares a "banana"
-  # (sem especificar o threshold)
-  curl http://localhost:8080/rest/listSimilar/banana
-  >> []
-  # (especificando um threshold)
-  curl http://localhost:8080/rest/listSimilar/banana?threshhold=4
-  >> ["abacate","manhã"]
-  ```
+    # Recuperando palavras similares a "boate"
+    # (usando threshold default)
+    curl http://localhost:8080/rest/listSimilar/boate
+    >> ["abacate","noite"]
+    ```
+    ```bash
+    # Recuperando palavras similares a "banana"
+    # (sem especificar o threshold)
+    curl http://localhost:8080/rest/listSimilar/banana
+    >> []
+    # (especificando um threshold)
+    curl http://localhost:8080/rest/listSimilar/banana?threshhold=4
+    >> ["abacate","manhã"]
+    ```
 
 **Observação:** Antes de inicializar o serviço verifique se a porta escolhida para disponibilizá-lo (8080 por padrão) está livre, ou seja, que não há outros serviços como o Apache (_httpd_) utilizando-a, e que o acesso à porta não está sendo bloqueado por um firewall nativo do sistema operacional.
 
